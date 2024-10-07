@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"
-API_KEY = "os.getenv('MY_ENV_VARIABLE')"  # Replace with your actual API key
+API_KEY = "AIzaSyDsHdypE4NfaK7Ixo5LcbNChpzetOl85KY"  # Replace with your actual API key
 
 def generate_response(user_input):
     headers = {
