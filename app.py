@@ -84,7 +84,7 @@ HTML_TEMPLATE = """
         <h1 class="text-center text-primary mb-4">Chatie ai by @dev_nathani16</h1>
         <div id="messages" class="mb-4">
             <div class="message ai">
-                <p>Welcome! Ask me anything.</p>
+                <p>Welcome! Ask me anything..</p>
             </div>
         </div>
         <div class="input-group mb-3">
