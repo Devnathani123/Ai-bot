@@ -80,7 +80,7 @@ HTML_TEMPLATE = """
 </head>
 <body>
     <div id="chatbox" class="container">
-        <h1 class="text-center text-primary mb-4">AI Chatbot By @dev_nathani16</h1>
+        <h1 class="text-center text-primary mb-4">Chatie ai By @dev_nathani16</h1>
         <div id="messages" class="mb-4">
             <div class="message ai">
                 <p>Welcome! Ask me anything.</p>
