@@ -1,20 +1,11 @@
 from flask import Flask, request, render_template_string, jsonify
 import requests
-import os
-from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
 API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"
-API_KEY = "YOUR_API_KEY"  # Replace with your actual API key
-UPLOAD_FOLDER = 'uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+API_KEY = "AIzaSyDsHdypE4NfaK7Ixo5LcbNChpzetOl85KY"  # Replace with your actual API key
 
-# Ensure the upload folder exists
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-# Function to generate response from the text input
 def generate_response(user_input):
     headers = {
         'Content-Type': 'application/json',
@@ -103,12 +94,6 @@ HTML_TEMPLATE = """
                 </svg>
             </button>
         </div>
-
-        <!-- New input for image upload -->
-        <div class="input-group mb-3">
-            <input type="file" id="imageUpload" class="form-control" accept="image/*" onchange="uploadImage()">
-            <button class="btn btn-primary" id="uploadButton" onclick="uploadImage()">Upload Image</button>
-        </div>
     </div>
 
     <script>
@@ -153,28 +138,6 @@ HTML_TEMPLATE = """
                      <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z"/>
                    </svg>`;
         }
-
-        function uploadImage() {
-            var input = document.getElementById("imageUpload");
-            var file = input.files[0];
-            if (!file) return;
-
-            var formData = new FormData();
-            formData.append("image", file);
-
-            fetch("/upload", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                var aiMessage = document.createElement("div");
-                aiMessage.className = "message ai";
-                aiMessage.innerHTML = "<p>" + data.response + "</p>";
-                document.getElementById("messages").appendChild(aiMessage);
-            })
-            .catch(error => console.error("Error uploading image:", error));
-        }
     </script>
 </body>
 </html>
@@ -194,4 +157,5 @@ def chat():
     ai_message = response_data['candidates'][0]['content']['parts'][0]['text']
     return jsonify({"response": ai_message})
 
-@
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
